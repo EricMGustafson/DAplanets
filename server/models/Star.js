@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 export const StarSchema = new Schema({
   name: { type: String, required: true },
   planets: { type: Number },
-  starId: { type: Schema.Types.ObjectId },
+  galaxyId: { type: Schema.Types.ObjectId, required: true },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 }, { timestamps: true, toJSON: { virtuals: true } })
 

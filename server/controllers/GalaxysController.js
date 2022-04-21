@@ -1,5 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { galaxyService } from '../services/GalaxysService'
+import { starsService } from "../services/StarsService"
 import BaseController from '../utils/BaseController'
 
 export class GalaxysController extends BaseController {
@@ -33,7 +34,8 @@ export class GalaxysController extends BaseController {
 
   async getStarsByGalaxy(req, res, next) {
     try {
-      return res.send()
+      const galaxysStars = await starsService.getStarsByGalaxy(req.params.id)
+      return res.send(galaxysStars)
     } catch (error) {
       next(error)
     }

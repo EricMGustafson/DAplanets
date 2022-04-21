@@ -2,9 +2,6 @@ import { dbContext } from '../db/DbContext'
 import { Forbidden } from '../utils/Errors'
 
 class StarsService {
-  async getAll() {
-    return await dbContext.Stars.find({}).populate('creator', 'name')
-  }
 
   async getById(id) {
     const star = dbContext.Stars.findById(id)
@@ -12,6 +9,11 @@ class StarsService {
       throw new Forbidden('Invalid Id')
     }
     return star
+  }
+
+  async getStarsByGalaxy(galaxyId) {
+    const stars = await dbContext.Stars.find({galaxyId: galaxyId}).populate('creator', 'name')
+    return stars
   }
 
   async create(star) {
